@@ -1,0 +1,26 @@
+h1:hover{
+    color: red;
+}
+
+a:hover{
+    color: blue;
+    background-color: black;
+}
+a:active{
+    background-color: blue;
+}
+input:focus{
+    background-color: orange;
+}
+.first {
+    color: blue;
+}
+.first:hover {
+    color: red;
+}
+.sec {
+    color: red;
+}
+.sec:hover {
+    color: blue;
+}

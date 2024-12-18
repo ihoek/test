@@ -1,0 +1,21 @@
+span.orange {
+    color : red;
+}
+/*만약 id일 경우 span#oragne로 작성*/
+/*ul > .orange {
+
+}*/
+
+/*
+div .orange {
+    background-color: yellow;
+}*/
+/*
+.orange + li {
+    color: red;
+}
+*/
+.orange ~ li {
+    color: red;
+}
+

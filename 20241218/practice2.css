@@ -1,0 +1,41 @@
+*{
+    color: white;
+    background-color: gray;
+}
+span{
+    background-color: red;
+}
+#first {
+    background-color: blue;
+}
+.second {
+    background-color: green;
+}
+.color_red {
+    color: red;
+    background-color: gray;
+}
+.color_ora {
+    color: orange;
+    background-color: gray;
+}
+.color_ye {
+    color: yellow;
+    background-color: gray;
+}
+.color_gre {
+    color: green;
+    background-color: gray;
+}
+.color_blu {
+    color: blue;
+    background-color: gray;
+}
+.color_dep {
+    color: darkblue;
+    background-color: gray;
+}
+.color_pur {
+    color: purple;
+    background-color: gray;
+}
