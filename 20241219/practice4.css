@@ -1,0 +1,25 @@
+.box {
+    display: flex;
+    background-color: orange;
+    width: auto;
+    height: 200px;
+}
+
+.html {
+    width: 200px;
+    height: 100px;
+    background-color: skyblue;
+}
+
+.CSS{
+    width: 200px;
+    height: 100px;
+    background-color: green;
+    margin: 0px 30px;
+}
+
+.Javascript{
+    width: 200px;
+    height: 100px;
+    background-color: red;
+}

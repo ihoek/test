@@ -1,0 +1,19 @@
+.box {
+    display: flex;
+    width: auto;
+    height: 100px;
+    background-color: beige;
+    justify-content: center;
+    /* margin: 0 auto; */
+}
+
+.text {
+    display : flex;
+    background-color:blue;
+    color: white;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    align-items : center;
+    justify-content: center;
+}

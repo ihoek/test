@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="./practice6.css">
+    <!-- 설문조사 글꼴 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@500&family=Noto+Sans+KR:wght@100..900&family=Playwrite+ES+Deco+Guides&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <!-- Title 글꼴 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@500&family=Nanum+Gothic+Coding&family=Noto+Sans+KR:wght@600&family=Playwrite+ES+Deco+Guides&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box">
+        <div class="semi-box">
+            <!-- Header -->
+            <div class="header">
+                <h1 class="header_text">설문조사</h1>
+            </div>
+            
+            <!-- Main - Name -->
+            <div class="main">
+                <div class="title_text">이름</div>
+                <input class="input" type="text" placeholder="이름을 입력해주세요" />
+            </div>
+
+            <!-- Main - E-mail -->
+            <div class="main">
+                <div class="title_text">이메일</div>
+                <input class="input" type="text" placeholder="OOOO@naver.com"/>
+            </div>
+
+            <!-- Main - age -->
+            <div class="main_age">
+                <div class="title_text"><b>나이</b></div>
+                <div class="radio"><input type="radio" name="age" id="10">10대</input><br /></div>
+                <div class="radio"><input type="radio" name="age" id="20">20대</input><br /></div>
+                <div class="radio"><input type="radio" name="age" id="30">30대</input><br /></div>
+                <div class="radio"><input type="radio" name="age" id="40">40대</input><br /></div>
+                <div class="radio"><input type="radio" name="age" id="50">50대</input><br /></div>
+                <div class="radio"><input type="radio" name="age" id="60" checked>60대 이상</input></div>
+            </div>
+            
+            <!-- Main - categotry -->
+            <div class="main">
+                <div class="title_text">설문조사 카테고리</div>
+                <div class="main_category">
+                    <select name="category" id="cate">
+                        <option value="Society">사회</option>
+                        <option value="Economy">경제</option>
+                        <option value="Sport">스포츠</option>
+                        <option value="Entertainment" >예능</option>
+                        <option value="Animal">동물</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Main - checkbox -->
+            <div class="main">
+                <div class="title_text"><b>원하는 강의(복수응답가능합니다.)</b></div>
+                <div class="main_category">
+                    <input type="checkbox">html</input>
+                    <input type="checkbox" checked>javascript</input>
+                    <input type="checkbox" checked>css</input>
+                </div>
+            </div>
+            
+            <!-- Main - textarea -->
+            <div class="main">
+                <textarea class="textarea" placeholder="하고 싶은 말을 써주세요:)" id="" cols="50" rows="10"></textarea>
+            </div>
+
+            <!-- Button -->
+            <input class="btn" type="button" value="제출">
+        </div>
+    </div>
+</body>
+</html>

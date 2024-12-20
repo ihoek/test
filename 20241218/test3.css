@@ -1,9 +1,9 @@
-span.orange {
+/*span.orange {
     color : red;
-}
+}*/
 /*만약 id일 경우 span#oragne로 작성*/
 /*ul > .orange {
-
+    color: red;
 }*/
 
 /*
@@ -13,8 +13,8 @@ div .orange {
 /*
 .orange + li {
     color: red;
-}
-*/
+}*/
+
 .orange ~ li {
     color: red;
 }

@@ -1,0 +1,11 @@
+.con {
+    color: orange;
+}
+.con::before{
+    content: "택시";
+    color: red;
+}
+.con::after{
+    content: "빨리";
+    color: blue;
+}

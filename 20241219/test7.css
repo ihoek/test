@@ -1,0 +1,15 @@
+.box {
+    width: 100px;
+    height: 100px;
+    background-color: beige;
+    /* border: 1px solid red; */
+    /* border-bottom: 1px solid red; */
+    /* border-left: 1px solid blue; */
+    /* border-right: 1px solid green; */
+    border-radius: 50px 50px 50px 50px;
+}
+img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
