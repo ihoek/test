@@ -1,0 +1,225 @@
+body {
+  position: relative;
+  top: 20px;
+}
+/*원 크기*/
+.big {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.mid {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.sma {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+
+/*작은 원 크기*/
+.small {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+/*다리 스타일*/
+.leg {
+  z-index: -2;
+  width: 15px;
+  height: 50px;
+  background-color: black;
+}
+
+/*첫번째 구간*/
+.item1_1 {
+  position: absolute;
+  background-color: red;
+  top: 30px;
+}
+
+.item1_2 {
+  position: absolute;
+  background-color: white;
+  top: 50px;
+  left: 10px;
+}
+
+.item1_3 {
+  position: absolute;
+  background-color: black;
+  top: 55px;
+  left: 10px;
+}
+/*두번째 구간*/
+
+.item2_1 {
+  z-index: 1;
+  position: absolute;
+  background-color: orange;
+  top: 60px;
+  left: 70px;
+}
+
+.item2_2 {
+  z-index: 1;
+  position: absolute;
+  background-color: white;
+  top: 80px;
+  left: 80px;
+}
+
+.item2_3 {
+  z-index: 1;
+  position: absolute;
+  background-color: black;
+  top: 80px;
+  left: 90px;
+}
+
+/*세번째 구간*/
+.item3_1 {
+  position: absolute;
+  background-color: yellow;
+  top: 90px;
+  left: 140px;
+}
+
+.item3_2 {
+  position: absolute;
+  background-color: white;
+  top: 150px;
+  left: 170px;
+}
+
+.item3_3 {
+  position: absolute;
+  background-color: black;
+  top: 165px;
+  left: 175px;
+}
+
+/*네번째 구간*/
+.item4_1 {
+  z-index: 1;
+  position: absolute;
+  background-color: green;
+  top: 110px;
+  left: 220px;
+}
+
+.item4_2 {
+  z-index: 1;
+  position: absolute;
+  background-color: white;
+  top: 115px;
+  left: 255px;
+}
+
+.item4_3 {
+  z-index: 1;
+  position: absolute;
+  background-color: black;
+  top: 115px;
+  left: 262px;
+}
+
+/*다섯번째 구간*/
+.item5_1 {
+  position: absolute;
+  background-color: navy;
+  top: 150px;
+  left: 280px;
+}
+
+.item5_2 {
+  position: absolute;
+  background-color: white;
+  top: 180px;
+  left: 315px;
+}
+
+.item5_3 {
+  position: absolute;
+  background-color: black;
+  top: 190px;
+  left: 330px;
+}
+
+/*여섯번째 구간*/
+.item6_1 {
+  position: absolute;
+  background-color: purple;
+  top: 100px;
+  left: 350px;
+}
+
+.item6_2 {
+  position: absolute;
+  background-color: white;
+  top: 135px;
+  left: 385px;
+}
+
+.item6_3 {
+  position: absolute;
+  background-color: black;
+  top: 135px;
+  left: 395px;
+}
+
+/*작은 원*/
+.s_item1 {
+  z-index: -1;
+  position: absolute;
+  background-color: red;
+  top: 100px;
+  left: 425px;
+}
+.s_item2 {
+  z-index: 1;
+  position: absolute;
+  background-color: orange;
+  top: 90px;
+  left: 435px;
+}
+.s_item3 {
+  position: absolute;
+  background-color: yellow;
+  top: 80px;
+  left: 445px;
+}
+.s_item4 {
+  position: absolute;
+  background-color: green;
+  top: 70px;
+  left: 455px;
+}
+
+.item2_leg {
+  position: absolute;
+  top: 140px;
+  left: 105px;
+}
+
+.item3_leg {
+  position: absolute;
+  top: 175px;
+  left: 175px;
+}
+
+.item4_leg {
+  position: absolute;
+  top: 200px;
+  left: 257px;
+}
+
+.item5_leg {
+  position: absolute;
+  top: 240px;
+  left: 320px;
+}

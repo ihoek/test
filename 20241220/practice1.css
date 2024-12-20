@@ -1,0 +1,174 @@
+/* 한칸에 50x50 */
+body {
+  display: flex;
+  height: 20000px;
+}
+.container {
+  position: relative;
+  background-color: beige;
+  width: 500px;
+  height: 500px;
+  border: 5px solid black;
+}
+
+.side_container {
+  position: fixed;
+  background-color: beige;
+  width: 250px;
+  height: 250px;
+  border: 5px solid black;
+  left: 515px;
+}
+
+.item1_1 {
+  position: absolute;
+  background-color: purple;
+  width: 150px;
+  height: 50px;
+  bottom: 0;
+}
+
+.item1_2 {
+  position: absolute;
+  background-color: purple;
+  width: 50px;
+  height: 150px;
+  bottom: 0;
+}
+
+.item2_1 {
+  position: absolute;
+  background-color: red;
+  width: 50px;
+  height: 50px;
+  bottom: 0px;
+  left: 150px;
+}
+
+.item2_2 {
+  position: absolute;
+  background-color: red;
+  width: 250px;
+  height: 50px;
+  bottom: 50px;
+  left: 50px;
+}
+
+.item3_1 {
+  position: absolute;
+  background-color: orange;
+  width: 300px;
+  height: 50px;
+  bottom: 0px;
+  left: 200px;
+}
+
+.item_blue {
+  background-color: aqua;
+}
+
+.item3_2 {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  bottom: 0px;
+  left: 300px;
+}
+
+.item3_3 {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  bottom: 0px;
+  left: 400px;
+}
+
+.item4_1 {
+  position: absolute;
+  background-color: black;
+  width: 100px;
+  height: 50px;
+  top: 50px;
+  left: 50px;
+}
+
+.item4_2 {
+  position: absolute;
+  background-color: black;
+  width: 50px;
+  height: 150px;
+  top: 50px;
+  left: 50px;
+}
+
+.item4_3 {
+  position: absolute;
+  background-color: black;
+  width: 250px;
+  height: 50px;
+  top: 200px;
+  left: 10px;
+}
+
+.item5_1 {
+  position: absolute;
+  background-color: black;
+  width: 150px;
+  height: 50px;
+  top: 260px;
+  left: 50px;
+}
+
+.item5_2 {
+  position: absolute;
+  background-color: black;
+  width: 50px;
+  height: 100px;
+  top: 260px;
+  left: 150px;
+}
+
+.item6_1 {
+  position: absolute;
+  background-color: black;
+  width: 250px;
+  height: 50px;
+  top: 100px;
+  left: 200px;
+}
+
+.item6_2 {
+  position: absolute;
+  background-color: black;
+  width: 50px;
+  height: 150px;
+  top: 150px;
+  left: 300px;
+}
+
+.item6_3 {
+  position: absolute;
+  background-color: black;
+  width: 150px;
+  height: 50px;
+  top: 250px;
+  left: 300px;
+}
+
+.side_item1_1 {
+  position: absolute;
+  background-color: black;
+  width: 50px;
+  height: 150px;
+  top: 50px;
+  left: 50px;
+}
+
+.side_item1_2 {
+  position: absolute;
+  background-color: black;
+  width: 150px;
+  height: 50px;
+  top: 150px;
+  left: 50px;
+}
