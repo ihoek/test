@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script>
+    // 더하기
+    const add = () => {
+      const n1 = prompt("첫번째 값을 입력하시오");
+      const n2 = prompt("두번째 값을 입력하시오");
+      return alert(Number(n1) + Number(n2) + "입니다");
+    };
+    // 빼기
+    const sub = () => {
+      const n1 = prompt("첫번째 값을 입력하시오");
+      const n2 = prompt("두번째 값을 입력하시오");
+      return alert(Number(n1) - Number(n2) + "입니다");
+    };
+    // 곱하기
+    const mul = () => {
+      const n1 = prompt("첫번째 값을 입력하시오");
+      const n2 = prompt("두번째 값을 입력하시오");
+      return alert(Number(n1) * Number(n2) + "입니다");
+    };
+    // 나누기
+    const divide = () => {
+      const n1 = prompt("첫번째 값을 입력하시오");
+      const n2 = prompt("두번째 값을 입력하시오");
+      return alert(Number(n1) / Number(n2) + "입니다");
+    };
+  </script>
+  <body>
+    <button onclick="add()">더하기</button>
+    <button onclick="sub()">빼기</button>
+    <button onclick="mul()">곱하기</button>
+    <button onclick="divide()">나누기</button>
+  </body>
+</html>

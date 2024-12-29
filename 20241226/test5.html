@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script>
+    const multifly = (num1, num2) => {
+      return num1 * num2;
+    };
+
+    const square = (number) => {
+      return number * number;
+    };
+
+    const plus = () => {
+      //alert(n1 + n2);
+      const n1 = prompt("첫번째 값을 입력하시오");
+      const n2 = prompt("두번째 값을 입력하시오");
+      return alert(Number(n1) + Number(n2) + "입니다");
+    };
+    console.log(multifly(3, 7));
+    console.log(square(4));
+  </script>
+  <body>
+    <button onclick="plus()">더하기</button>
+  </body>
+</html>

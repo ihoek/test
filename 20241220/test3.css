@@ -7,13 +7,15 @@
 }
 
 .b2 {
+  position: relative;
   width: 400px;
   height: 400px;
   background-color: red;
+  top: 30px;
 }
 
 .b3 {
-  width: 600px;
-  height: 800px;
+  width: 400;
+  height: 400;
   background-color: blue;
 }
