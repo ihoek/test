@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="./CSS/pra1.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="img">
+        <img src="./imgs/main.png" alt="이미지" id="imge" class="imge" />
+      </div>
+
+      <div class="btns">
+        <div class="btn" onclick="chage('사과')">사과</div>
+        <div class="btn" onclick="chage('바나나')">바나나</div>
+        <div class="btn" onclick="chage('포도')">포도</div>
+        <div class="btn" onclick="chage('복숭아')">복숭아</div>
+      </div>
+    </div>
+  </body>
+  <script>
+    const chage = (type) => {
+      if (type === "사과") {
+        // 사과 이미지 넣기
+        //document.getElementsByClassName("imge").src = "./imgs/strawberry.webp"; 이건 왜 실행x?
+        document.getElementById("imge").src = "./imgs/strawberry.webp";
+        //document.querySelector("imge").src="./imgs/strawberry.webp";
+      } else if (type === "바나나") {
+        document.getElementById("imge").src = "./imgs/banana.jpeg";
+      } else if (type === "포도") {
+        document.getElementById("imge").src = "./imgs/grape.jpeg";
+      } else {
+        document.getElementById("imge").src = "./imgs/peach.jpeg";
+      }
+    };
+  </script>
+</html>

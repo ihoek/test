@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="box">눌러보세요</div>
+    <div class="box2">눌러보세요 2</div>
+  </body>
+  <script>
+    //방법1 추천x
+    // console.log(boxEl);
+    // boxEl.addEventListener("click", function () {
+    //   alert("클릭하셨습니다");
+    // });
+
+    //방법2 훨 나은 방법
+    const clickFunction = () => {
+      alert("클릭");
+    };
+
+    let boxEl = document.querySelector(".box");
+    let boxEl2 = document.querySelector(".box2");
+
+    boxEl.addEventListener("click", clickFunction);
+    boxEl2.addEventListener("click", clickFunction);
+  </script>
+</html>

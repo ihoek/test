@@ -1,0 +1,23 @@
+.header1 {
+  text-align: center;
+}
+.tableStlye {
+  align-items: center;
+  justify-items: center;
+}
+.sunday {
+  color: red;
+}
+.saturday {
+  color: skyblue;
+}
+td {
+  text-align: center;
+  padding: 30px;
+}
+.len {
+  text-align: center;
+  align-items: center;
+  justify-items: center;
+  font-size: 12px;
+}

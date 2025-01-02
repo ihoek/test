@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="./CSS/pra2.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>날짜 : <input type="text" id="date" /></div>
+    <div>내용 : <input type="text" id="content" /></div>
+    <button onclick="addComent()">작성</button>
+    <h1 class="header1">2025년 1월</h1>
+    <div class="tableStlye">
+      <table id="table">
+        <tr>
+          <th class="sunday">日</th>
+          <th class="weekday">月</th>
+          <th class="weekday">火</th>
+          <th class="weekday">水</th>
+          <th class="weekday">木</th>
+          <th class="weekday">金</th>
+          <th class="saturday">土</th>
+        </tr>
+        <tr>
+          <td class="sunday"></td>
+          <td class="weekday"></td>
+          <td class="weekday"></td>
+          <td class="weekday">1</td>
+          <td class="weekday">2</td>
+          <td class="weekday">3</td>
+          <td class="saturday">4</td>
+        </tr>
+        <tr>
+          <td class="len"></td>
+          <td class="len"></td>
+          <td class="len"></td>
+          <td class="len"></td>
+          <td class="len"></td>
+          <td class="len"></td>
+          <td class="len"></td>
+        </tr>
+        <tr>
+          <td class="sunday">5</td>
+          <td class="weekday">6</td>
+          <td class="weekday">7</td>
+          <td class="weekday">8</td>
+          <td class="weekday">9</td>
+          <td class="weekday">10</td>
+          <td class="saturday">11</td>
+        </tr>
+        <tr>
+          <td class="len"></td>
+          <td class="len"></td>
+          <td class="len"></td>
+          <td class="len"></td>
+          <td class="len"></td>
+          <td class="len"></td>
+          <td class="len"></td>
+        </tr>
+        <tr>
+          <td class="sunday">12</td>
+          <td class="weekday">13</td>
+          <td class="weekday">14</td>
+          <td class="weekday">15</td>
+          <td class="weekday">16</td>
+          <td class="weekday">17</td>
+          <td class="saturday">18</td>
+        </tr>
+        <tr>
+          <td class="len"></td>
+          <td class="len"></td>
+          <td class="len"></td>
+          <td class="len"></td>
+          <td class="len"></td>
+          <td class="len"></td>
+          <td class="len"></td>
+        </tr>
+        <tr>
+          <td class="sunday">19</td>
+          <td class="weekday">20</td>
+          <td class="weekday">21</td>
+          <td class="weekday">22</td>
+          <td class="weekday">23</td>
+          <td class="weekday">24</td>
+          <td class="saturday">25</td>
+        </tr>
+        <tr>
+          <td class="len"></td>
+          <td class="len"></td>
+          <td class="len"></td>
+          <td class="len"></td>
+          <td class="len"></td>
+          <td class="len"></td>
+          <td class="len"></td>
+        </tr>
+        <tr>
+          <td class="sunday">26</td>
+          <td class="weekday">27</td>
+          <td class="weekday">28</td>
+          <td class="weekday">29</td>
+          <td class="weekday">30</td>
+          <td class="weekday">31</td>
+          <td class="saturday"></td>
+        </tr>
+        <tr>
+          <td class="len"></td>
+          <td class="len"></td>
+          <td class="len"></td>
+          <td class="len"></td>
+          <td class="len"></td>
+          <td class="len"></td>
+          <td class="len"></td>
+        </tr>
+      </table>
+    </div>
+  </body>
+  <script>
+    //console.log(document.querySelectorAll(".sunday, .weekday, .saturday")[10]);
+    const addComent = () => {
+      let date = Number(document.getElementById("date").value);
+      let content = document.getElementById("content").value;
+      /*
+      1.날짜를 입력받고 받은 수를 Number()로 숫자로 바꾸기
+      2.내용을 받고 해당 내용을 숫자 바로 밑에 표기하기???
+      2.1 td를 하나 더 적어서 거기에?
+
+      3.lenIndex를 통해 숫자 받아서 해당 값에 innerHTML로 삽입?
+      */
+      let lenIndex = document.querySelectorAll(".len")[date + 2];
+      let Index = document.querySelectorAll(".sunday, .weekday, .saturday");
+
+      //만약 innerHTML이 있다면 공백 후 conetent 삽입
+      if (lenIndex.innerHTML !== "") {
+        lenIndex.innerHTML = "";
+        lenIndex.innerHTML = content;
+      } else {
+        lenIndex.innerHTML = content;
+      }
+
+      console.log(document.querySelectorAll(".len")[date + 2]);
+
+      document.getElementById("date").value = "";
+      document.getElementById("content").value = "";
+    };
+    //공휴일(1,28,29,30) -> (10,37,38,39)빨간색 표시
+    document
+      .querySelectorAll(".sunday, .weekday, .saturday")[10]
+      .classList.add("sunday");
+    document
+      .querySelectorAll(".sunday, .weekday, .saturday")[37]
+      .classList.add("sunday");
+    document
+      .querySelectorAll(".sunday, .weekday, .saturday")[38]
+      .classList.add("sunday");
+    document
+      .querySelectorAll(".sunday, .weekday, .saturday")[39]
+      .classList.add("sunday");
+  </script>
+</html>
