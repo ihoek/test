@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>작성자 <input type="text" id="name" /></div>
+    <div>내용 <input type="text" id="content" /></div>
+    <button id="writebtn" onclick="write2()">작성</button>
+
+    <div>
+      <table id="table" border="1">
+        <tr>
+          <th>번호</th>
+          <th>작성자</th>
+          <th>내용</th>
+          <th>작성일</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>김규리</td>
+          <td>여러분 반가워요</td>
+          <td>2022-7-2 15 : 3</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>김규리</td>
+          <td>오늘 수업도 열심히 해봐요</td>
+          <td>2022-7-2 15 : 3</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>홍길동</td>
+          <td>안녕!</td>
+          <td>2022-7-2 15 : 4</td>
+        </tr>
+      </table>
+    </div>
+
+    <script>
+      let number = 4;
+      const write2 = () => {
+        //변수 선언
+        const name = document.getElementById("name").value;
+        const content = document.getElementById("content").value;
+
+        //시간
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = now.getMonth() + 1;
+        const dates = now.getDate();
+        const hour = now.getHours();
+        const minute = now.getMinutes();
+
+        //console.log(`${year}-${month}-${dates} ${hour} : ${minute}`);
+
+        const table = document.getElementById("table");
+        const row = table.insertRow();
+        const cell1 = row.insertCell(0);
+        const cell2 = row.insertCell(1);
+        const cell3 = row.insertCell(2);
+        const cell4 = row.insertCell(3);
+        cell1.innerHTML = Number(number);
+        cell2.innerHTML = name;
+        cell3.innerHTML = content;
+        cell4.innerHTML = `${year}-${month}-${dates} ${hour} : ${minute}`;
+
+        number++;
+        document.getElementById("name").value = "";
+        document.getElementById("content").value = "";
+      };
+    </script>
+  </body>
+</html>
+
+<style>
+  #writebtn {
+    margin: 20px 0px;
+  }
+</style>

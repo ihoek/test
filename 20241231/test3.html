@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .box {
+      display: inline-block;
+    }
+    .green {
+      background-color: green;
+    }
+    .red {
+      background-color: red;
+    }
+  </style>
+  <body>
+    <div id="Hello">안녕하세요</div>
+    <div id="Hello">안녕하세요2</div>
+    <div class="box green">클래스 선택</div>
+    <div class="box red">클래스 선택</div>
+    <input type="text" name="phone" />
+    <div><span>hello</span></div>
+    <hr />
+    <div class="container">
+      안녕하세요
+      <b>^^</b>
+    </div>
+    <input type="text" name="email" id="email-input" />
+    <div>
+      <span class="test-parent">?</span
+        ><span class="test-parent">hello world</span
+        ><span class="test-parent">!</span>
+    </div>
+
+    <div>
+      ?<span class="test-parent2">hello world</span
+      >!</span>
+    </div>
+    <script>
+      //처음 하나만 선택
+      console.log(document.getElementById("Hello"));
+      console.log(document.getElementsByClassName("box"));
+      console.log(document.getElementsByTagName("div"));
+      console.log(document.getElementsByName("phone"));
+      //처음 하나만 선택
+      //괄호 안에는 css 형식 그대로 작성하면 된다
+      console.log(document.querySelector("#Hello"));
+      console.log(document.querySelector(".box"));
+      console.log(document.querySelector("[name=phone]"));
+      console.log(document.querySelector("div > span"));
+      console.log(document.querySelectorAll("#Hello"));
+
+      const container = document.querySelector(".container");
+      console.log(container.innerText);
+      console.log(container.innerHTML);
+
+      container.innerHTML = "<b>Hello</b>"; //선책한 요소 값을 바꿀 수 있다
+      console.log(container.className);
+
+      container.className = "container red";
+      console.log(container.className);
+
+      container.classList.contains("red");
+      console.log(container.classList.contains("red"));
+
+      //.toggle("red") 밑 if문의 축약형
+      //if (container.classList.contains("red")) container.remove("red");
+      //else container.classList.add("red");
+
+      console.log(container.textContent);
+      container.textContent = "hi";
+
+      const input = document.getElementById("email-input");
+      input.setAttribute("placeholder", "이메일 입력");
+      console.log(input.getAttribute("placeholder"));
+
+      //1.자식 노드 접근
+      const body = document.querySelector("body");
+      console.log(body.children[0]);
+
+      //2.부모 노드 접근
+      const test = document.querySelector(".test-parent");
+      console.log(test.parentNode);
+      console.log(test.parentElement);
+
+      //3.형제 노드에 접근(이전, 다음)
+      console.log(test.nextElementSibling);
+      console.log(test.previousElementSibling);
+
+      const test2 = document.querySelector(".test-parent2");
+      console.log(test2.nextSibling);
+      console.log(test2.previousSibling);
+    </script>
+  </body>
+</html>

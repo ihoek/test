@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script>
+    let numbers = [1, 2, 3, 4, 5, 6];
+    let fruits = ["사과", "바나나", "수박", "포도", "파인애플"];
+
+    fruits.forEach((fruits, i, arr) => {
+      console.log(fruits, i, arr);
+    });
+
+    const filteredArr = numbers.filter((num, i, arr) => {
+      return num % 2 === 0;
+    });
+    console.log(filteredArr);
+
+    const filteredArr2 = numbers.filter((num) => {
+      return num % 2 === 0;
+    });
+
+    const isOdd = (num) => {
+      return num % 2 === 1;
+    };
+  </script>
+  <body></body>
+</html>

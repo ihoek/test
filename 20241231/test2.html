@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script>
+    const now = new Date(); //년 월 일 시 분 초
+    const now2 = new Date("2016-05-12"); // '2016/05/06' 가능
+    console.log(now);
+    console.log(now.getFullYear());
+    console.log(now.getDate());
+    console.log(now.getDay());
+    console.log(now.getTime());
+
+    console.log(now.getHours());
+    console.log(now.getMinutes());
+    console.log(now.getSeconds());
+
+    const year = now.getFullYear();
+    const month = now.getMonth() + 1;
+    const dates = now.getDate();
+
+    console.log(`${year}-${month}-${dates}`);
+
+    const expiredDate = new Date("2025-12-31");
+
+    //if (now.getTime() > expiredDate.getTime()) //시간이 만료
+    const object = { a: 1, b: 2, c: 3 };
+  </script>
+  <body></body>
+</html>

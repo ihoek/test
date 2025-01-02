@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- before -->
+    <div id="container">
+      <!-- prepend -->
+      <h3>제목입니다</h3>
+      <!-- append -->
+    </div>
+    <div id="container2">
+      <h3>제목입니다</h3>
+    </div>
+    <!-- after -->
+    <script>
+      const container = document.getElementById("container");
+
+      //container.innerHTML = "<h3>태그입니다</h3>";
+      //container.innerHTML += "<p>태그를 입력</p>";
+
+      //1.p 태그를 만든다
+      const p = document.createElement("p");
+
+      //2.p태그 내부에 원하는 내용 삽입
+      p.innerText = "본문입니다";
+
+      //3. container 내부에 p태그 추가
+      container.appendChild(p);
+
+      const p2 = document.createElement("p");
+      p2.innerText = "본문입니다 2";
+      container.append(p, p2, "문자열도 추가");
+      container.prepend(p);
+
+      container.before(p);
+      container.after(p);
+
+      const container2 = document.getElementById("container2");
+      const h3 = document.querySelector("#container2 > h3");
+      //container2.remove();
+      //container2.removeChild(h3);
+      container.innerHTML = "";
+
+      //input.value
+    </script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script>
+    let fruit1 = [
+      "사과",
+      "딸기",
+      "파인애플",
+      "수박",
+      "참외",
+      "오렌지",
+      "자두",
+      "망고",
+    ];
+    let fruit2 = ["수박", "사과", "참외", "오렌지", "파인애플", "망고"];
+
+    //같은요소
+    let same = [];
+    let diff = [];
+    for (let fruit of fruit1) {
+      if (fruit2.includes(fruit)) {
+        same.push(fruit);
+      } else {
+        diff.push(fruit);
+      }
+    }
+    console.log("same : " + same);
+    console.log("diff : " + diff);
+  </script>
+  <body></body>
+</html>
