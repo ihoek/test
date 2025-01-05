@@ -1,0 +1,29 @@
+.menu {
+  display: flex;
+  background-color: skyblue;
+  height: 100px;
+  justify-content: center;
+  align-items: center;
+}
+.selcet {
+  margin: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    background-color: skyblue;
+    height: 60px;
+  }
+  .menu {
+    display: block;
+  }
+  .selcet {
+    display: flex;
+    background-color: rgb(209, 242, 255);
+    height: 50px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+  }
+}
