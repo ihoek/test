@@ -137,8 +137,23 @@
       //td 값 넣기
       td_name.innerText = name_list[cnt];
       td_age.innerText = age_list[cnt];
-      td_careers.innerText = car_list;
-      td_nick.innerText = ni_list;
+
+      const careerDiv = document.createElement("div");
+      element.careers.forEach((career) => {
+        const careerItem = document.createElement("div");
+        careerItem.innerText = career.title;
+        careerDiv.appendChild(careerItem);
+      });
+      td_careers.appendChild(careerDiv);
+
+      //td_nick.innerText = ni_list;
+      const nickDiv = document.createElement("div");
+      element.nickName.forEach((nick) => {
+        const nickItem = document.createElement("div");
+        nickItem.innerText = nick.name;
+        nickDiv.appendChild(nickItem);
+      });
+      td_nick.appendChild(nickDiv);
 
       //tr에 td 삽입
       tr.appendChild(td_name);
