@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="./test2.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="main_wrap"></div>
+  </body>
+  <script>
+    const data = [
+      {
+        id: 1,
+        name: "김철수",
+        age: 14,
+        careers: [
+          { title: "놀기" },
+          { title: "먹기" },
+          { title: "자기" },
+          { title: "숨쉬기" },
+        ],
+        nickName: [
+          { name: "김안철수" },
+          { name: "김김안철수" },
+          { name: "박터짐" },
+        ],
+      },
+      {
+        id: 2,
+        name: "영희",
+        age: 35,
+        careers: [
+          { title: "놀기" },
+          { title: "자전거타기" },
+          { title: "오렌지먹기" },
+          { title: "사과부시기" },
+        ],
+        nickName: [
+          { name: "김영희" },
+          { name: "야생사자" },
+          { name: "오올이" },
+        ],
+      },
+      {
+        id: 3,
+        name: "박광철",
+        age: 20,
+        careers: [
+          { title: "일수나가기" },
+          { title: "돈빌려주기" },
+          { title: "공무집행방해하기" },
+          { title: "무면허운전하기" },
+        ],
+        nickName: [
+          { name: "대흥역호랑이와사자두마리" },
+          { name: "마포불주먹" },
+          { name: "전설" },
+          { name: "경찰의적" },
+        ],
+      },
+    ];
+
+    //변수 선언
+    const main = document.querySelector(".main_wrap");
+    const table = document.createElement("table");
+
+    const header_list = ["이름", "나이", "커리어", "별명"];
+
+    const minors = [];
+    const adult = [];
+
+    const div_career_list = [];
+    const div_nick_list = [];
+
+    const long_nick_list = [];
+    const total_long_nick_list = [];
+
+    let max = 0;
+    let index = 0;
+
+    //각 list
+    const name_list = data.map(function (value) {
+      return value.name;
+    });
+    const age_list = data.map(function (value) {
+      return value.age;
+    });
+    const careers_list = data.map(function (value) {
+      return value.careers;
+    });
+    const nick_list = data.map(function (value) {
+      return value.nickName;
+    });
+
+    // console.log("nick_list[0]", nick_list[0]);
+    // console.log("nick_list[0][0]", nick_list[0][0]);
+    // console.log("nick_list[0][0].title", nick_list[0][0].name);
+    // console.log("nick_list", nick_list);
+
+    // table 생성
+    main.appendChild(table);
+
+    // row 생성 - header
+    const tr = document.createElement("tr");
+    for (let i = 0; i < 4; i++) {
+      const td = document.createElement("td");
+      td.innerText = header_list[i];
+      tr.appendChild(td);
+      table.appendChild(tr);
+    }
+
+    //row 생성 - value
+    let cnt = 0;
+    data.forEach((element) => {
+      //careers list
+      const car_list = [];
+      for (let i = 0; i < careers_list[cnt].length; i++) {
+        car_list.push(careers_list[cnt][i].title);
+      }
+
+      //nick list
+      const ni_list = [];
+      for (let i = 0; i < nick_list[cnt].length; i++) {
+        ni_list.push(nick_list[cnt][i].name);
+      }
+
+      //변수 선언
+      const tr = document.createElement("tr");
+      tr.id = cnt;
+      const td_name = document.createElement("td");
+      const td_age = document.createElement("td");
+      const td_careers = document.createElement("td");
+      const td_nick = document.createElement("td");
+
+      //td 값 넣기
+      td_name.innerText = name_list[cnt];
+      td_age.innerText = age_list[cnt];
+      td_careers.innerText = car_list;
+      td_nick.innerText = ni_list;
+
+      //tr에 td 삽입
+      tr.appendChild(td_name);
+      tr.appendChild(td_age);
+      tr.appendChild(td_careers);
+      tr.appendChild(td_nick);
+
+      //tabledp tr 삽입
+      table.appendChild(tr);
+
+      //alert
+      tr.addEventListener("click", function () {
+        alert(
+          `해당 하는 사람의 이름은 ${name_list[tr.id]}이고, 나이는 ${
+            age_list[tr.id]
+          }이며 ${judge(age_list[tr.id])}입니다`
+        );
+      });
+
+      function judge(num) {
+        if (num >= 20) {
+          return "성인";
+        } else {
+          return "미성년자";
+        }
+      }
+
+      //나이 계산
+      if (age_list[cnt] >= 20) {
+        adult.push(name_list[cnt]);
+        div_career_list.push(car_list);
+        div_nick_list.push(ni_list);
+      } else {
+        minors.push(name_list[cnt]);
+        div_career_list.push(car_list);
+        div_nick_list.push(ni_list);
+      }
+
+      //가장 긴 별명을 찾는 알고리즘
+      for (let i in nick_list[cnt]) {
+        long_nick_list.push(nick_list[cnt][i].name.length);
+        if (max < nick_list[cnt][i].name.length) {
+          max = nick_list[cnt][i].name.length;
+          index = name_list[cnt];
+        }
+      }
+
+      cnt++;
+    });
+
+    //2번
+    const div01 = document.createElement("div");
+    const div02 = document.createElement("div");
+    const div03 = document.createElement("div");
+    div01.innerText = `미성년자는 ${minors}가 있고 그 사람의 커리어는 ${div_career_list[0]}가 있으며 별명은 ${div_nick_list[0]}입니다.`;
+    div02.innerText = `성인은 ${adult[0]}가 있고 그 사람의 커리어는 ${div_career_list[1]}가 있으며 별명은 ${div_nick_list[1]}입니다.`;
+    div03.innerText = `성인은 ${adult[1]}가 있고 그 사람의 커리어는 ${div_career_list[2]}가 있으며 별명은 ${div_nick_list[2]}입니다.`;
+
+    main.appendChild(div01);
+    main.appendChild(div02);
+    main.appendChild(div03);
+
+    //가장 긴 별명을 가지는 사람 console
+    //console.log(max, index);
+    console.log(
+      `가장 긴 별명을 가진 사람의 이름은 ${index}이고 글자수는 ${max}입니다.`
+    );
+    // console.log("nick_list[0][0].title", nick_list[0][0].name.length);
+    // console.log("nick_list[0][0].title", nick_list[0][1].name.length);
+    // console.log("nick_list[0][0].title", nick_list[0][2].name.length);
+  </script>
+</html>
