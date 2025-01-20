@@ -2,7 +2,21 @@
   display: flex;
   flex-direction: column;
 }
-.input-wrap input {
+input {
+  display: flex;
   padding: 10px;
-  margin-bottom: 20px;
+  margin: 5px;
+}
+#error_id {
+  width: 100%;
+}
+button {
+  display: flex;
+  padding: 10px;
+  margin: 5px;
+}
+div {
+  display: flex;
+  padding: 10px;
+  margin: 5px;
 }
