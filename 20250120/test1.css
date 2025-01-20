@@ -1,0 +1,8 @@
+.input-wrap {
+  display: flex;
+  flex-direction: column;
+}
+.input-wrap input {
+  padding: 10px;
+  margin-bottom: 20px;
+}
