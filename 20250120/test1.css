@@ -1,22 +1,99 @@
+/* 포인트 컬러 */
+:root {
+  --main-color: #badfee; /* 하늘색 */
+  --error-color: #ff6b6b; /* 오류 메시지용 빨간색 */
+  --input-bg: #f5faff; /* 입력 박스 배경색 */
+}
+
+/* input 영역 스타일 */
 .input-wrap {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  width: 100%; /* 반응형을 위해 % 사용 */
+  max-width: 600px; /* 최대 너비 */
+  margin: 20px auto;
+  border: 1px solid var(--main-color);
 }
+
 input {
-  display: flex;
-  padding: 10px;
-  margin: 5px;
-}
-#error_id {
   width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 14px;
+  background-color: var(--input-bg);
+  transition: border-color 0.3s;
 }
+
+input:focus {
+  border-color: var(--main-color);
+  outline: none;
+}
+
+/* 오류 메시지 스타일 */
+#error_id,
+#error_name,
+#error_age,
+#error_career,
+#error_nickname {
+  font-size: 12px;
+  color: var(--error-color);
+  margin-top: -5px;
+  margin-bottom: 10px;
+}
+
+/* 버튼 스타일 */
 button {
-  display: flex;
-  padding: 10px;
-  margin: 5px;
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--main-color);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
 }
-div {
-  display: flex;
-  padding: 10px;
-  margin: 5px;
+
+button:active {
+  background-color: #a4d2e6; /* 눌렀을 때 어두운 하늘색 */
+  transform: scale(0.98); /* 약간 눌린 효과 */
+}
+
+/* 메인 테이블 스타일 */
+.main-wrap {
+  width: 100%;
+  max-width: 650px; /* input-wrap과 동일한 최대 너비 */
+  margin: 20px auto;
+}
+
+table {
+  width: 100%; /* input-wrap과 동일한 가로 크기 */
+  border-collapse: collapse;
+  text-align: left;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--main-color);
+}
+
+table th,
+table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+table th {
+  background-color: var(--main-color);
+  color: white;
+  font-weight: bold;
 }
