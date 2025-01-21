@@ -83,13 +83,11 @@ save_btn.addEventListener("click", () => {
   id_arr.push(infoData._id);
   nickname_arr.push(infoData.nickname);
 
-  //조건에 맞게 입력하지 않았을 경우
-
   if (
     id_arr.slice(0, id_arr.length - 1).includes(ck_id) === true ||
     nickname_arr.slice(0, nickname_arr.length - 1).includes(ck_nick) === true ||
     career_input.value.length < 15 ||
-    nickname_input.value < 2
+    nickname_input.value.length < 2
   ) {
     //이미 입력된 값이라면
     if (id_arr.slice(0, id_arr.length - 1).includes(ck_id) === true) {
@@ -103,7 +101,34 @@ save_btn.addEventListener("click", () => {
     } else if (nickname_input.value < 2) {
       error_career.innerText = "2자 이상으로 입력하시오.";
     }
+
+    //조건에 맞게 입력하지 않았을 경우
+    if (id_input.value === "") {
+      error_id.innerText = "아이디를 입력을 하지 않았습니다.";
+      console.log("id 공백");
+    }
+    if (age_input.value === "") {
+      error_age.innerText = "나이를 입력을 하지 않았습니다.";
+      console.log("age 공백");
+    }
+
+    if (career_input.value === "") {
+      error_career.innerText = "경력를 입력을 하지 않았습니다.";
+      console.log("career 공백");
+    }
+    if (nickname_input.value === "") {
+      console.log("nick 공백");
+      error_nickname.innerText = "별명을 입력을 하지 않았습니다.";
+    }
+    if (name_input.value === "") {
+      error_name.innerText = "이름을 입력을 하지 않았습니다.";
+      console.log("name 공백");
+    }
+
+    //로컬 스토리지에 저장된 값 삭제
     window.localStorage.removeItem(data_map);
+
+    //input 요소 삭제
     id_input.value = "";
     name_input.value = "";
     age_input.value = "";
