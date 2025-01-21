@@ -2,6 +2,9 @@
 let data_map = [];
 let cnt = 0;
 
+let error_check = false; //false 정상적인 값 true 오류난 값(이때 버튼 비활성화할 것)
+let btn_active = [false, false, false, false];
+
 const id_input = document.getElementById("id_input");
 const name_input = document.getElementById("name_input");
 const age_input = document.getElementById("age_input");
@@ -14,17 +17,18 @@ const error_age = document.getElementById("error_age");
 const error_career = document.getElementById("error_career");
 const error_nickname = document.getElementById("error_nickname");
 
+//버튼
+const save_btn = document.getElementById("save");
+
 //중복 확인용 배열
 let id_arr = [];
 let nickname_arr = [];
 
 let ls = window.localStorage.getItem("_data", data_map);
 
-//버튼
-const save_btn = document.getElementById("save");
-
 //window 로드 이벤트
 window.onload = function () {
+  save_btn.disabled = true; // 비활성화
   //데이터 로드 시 값이 존재하는 지 확인하기
   if (ls === null) {
     //값이 존재하지 않을 경우
@@ -60,10 +64,112 @@ window.onload = function () {
   }
 };
 
+//입력 중 출력 함수
+function printId() {
+  const content = document.getElementById("id_input").value;
+  if (id_arr.slice(0, id_arr.length).includes(content) === true) {
+    document.getElementById("error_id").innerText =
+      "동일한 id값을 입력하셨습니다";
+    btn_active[0] = false;
+  } else {
+    document.getElementById("error_id").innerText = content;
+    btn_active[0] = true;
+  }
+
+  if (btn_active.indexOf(false) === -1) {
+    //모두 활성화인 경우
+    save_btn.disabled = false; // 활성화
+  } else {
+    save_btn.disabled = true; // 비활성화
+  }
+  console.log("btn_active[0]", btn_active[0]);
+  //check_arr[0] = error_check;
+}
+function printAge() {
+  const content = document.getElementById("age_input").value;
+  if (parseInt(age_input.value) > 150) {
+    document.getElementById("error_age").innerText = "150살 이하로 작성하시오.";
+    btn_active[1] = false;
+    console.log("버튼 비활성화 실행 중");
+  } else {
+    document.getElementById("error_age").innerText = content;
+    btn_active[1] = true;
+    console.log("버튼 활성화 실행 중");
+  }
+
+  if (btn_active.indexOf(false) === -1) {
+    save_btn.disabled = false; // 활성화
+  } else {
+    save_btn.disabled = true; // 비활성화
+  }
+  console.log("btn_active[1]", btn_active[1]);
+  //check_arr[1] = error_check;
+}
+function printCareer() {
+  const content = document.getElementById("career_input").value;
+  if (career_input.value.length < 15) {
+    document.getElementById("error_career").innerText =
+      "15자 이상으로 작성하시오.";
+    btn_active[2] = false;
+  } else {
+    document.getElementById("error_career").innerText = content;
+    btn_active[2] = true;
+  }
+
+  if (btn_active.indexOf(false) === -1) {
+    save_btn.disabled = false; // 활성화
+  } else {
+    save_btn.disabled = true; // 비활성화
+  }
+  console.log("btn_active[2]", btn_active[2]);
+  //check_arr[2] = error_check;
+}
+function printNickName() {
+  const content = document.getElementById("nickname_input").value;
+  if (nickname_arr.slice(0, nickname_arr.length).includes(content) === true) {
+    document.getElementById("error_nickname").innerText =
+      "별명을 중복 입력하셨습니다.";
+    btn_active[3] = false;
+  } else if (nickname_input.value.length < 2) {
+    document.getElementById("error_nickname").innerText =
+      "2자 이상으로 입력하시오.";
+    btn_active[3] = false;
+  } else {
+    document.getElementById("error_nickname").innerText = content;
+    btn_active[3] = true;
+  }
+
+  if (btn_active.indexOf(false) === -1) {
+    //fa 찾지 못했다 즉 다 false
+    console.log("이제 활성화가 된다");
+    save_btn.disabled = false; // 활성화
+  } else {
+    save_btn.disabled = true; // 비활성화
+  }
+  console.log("btn_active[3]", btn_active[3]);
+  //console.log(error_check);
+  //check_arr[3] = error_check;
+}
+
+/*
+평소에는 버튼이 비활성화되어 있다가 모든 조건을 만족하면 활성화로 전환하는 방법
+1.저장버튼 비활성화하기
+2.check_arr의 모든 값이 false일 때만 활성화 시키기
+*/
+
 //버튼 클릭 시 이벤트
 save_btn.addEventListener("click", () => {
+  console.log("버튼 실행중");
+  save_btn.disabled = true; // 비활성화
+  btn_active = [false, false, false, false];
   //local Storage get
   window.localStorage.getItem("_data", JSON.stringify(data_map));
+
+  error_id.value = "";
+  error_age.value = "";
+  error_name.value = "";
+  error_career.value = "";
+  error_nickname.value = "";
 
   let infoData = {
     _id: id_input.value,
@@ -80,61 +186,54 @@ save_btn.addEventListener("click", () => {
   let ck_id = id_input.value;
   let ck_nick = nickname_input.value;
 
-  id_arr.push(infoData._id);
-  nickname_arr.push(infoData.nickname);
-
+  //console.log("id_arr", id_arr);
   if (
-    id_arr.slice(0, id_arr.length - 1).includes(ck_id) === true ||
-    nickname_arr.slice(0, nickname_arr.length - 1).includes(ck_nick) === true ||
+    id_arr.slice(0, id_arr.length).includes(ck_id) === true ||
+    nickname_arr.slice(0, nickname_arr.length).includes(ck_nick) === true ||
     career_input.value.length < 15 ||
-    nickname_input.value.length < 2
+    nickname_input.value.length < 2 ||
+    parseInt(age_input.value) > 150
   ) {
     //이미 입력된 값이라면
-    if (id_arr.slice(0, id_arr.length - 1).includes(ck_id) === true) {
+    //console.log("id_arr", id_arr);
+    if (id_arr.slice(0, id_arr.length).includes(ck_id) === true) {
       error_id.innerText = "아이디를 중복 입력하셨습니다.";
-    } else if (
-      nickname_arr.slice(0, nickname_arr.length - 1).includes(ck_nick) === true
-    ) {
+    } else {
+      error_id.innerText = "";
+    }
+    if (nickname_arr.slice(0, nickname_arr.length).includes(ck_nick) === true) {
       error_nickname.innerText = "별명을 중복 입력하셨습니다.";
-    } else if (career_input.value.length < 15) {
+    } else if (nickname_input.value.length < 2) {
+      error_nickname.innerText = "2자 이상으로 입력하시오.";
+    } else {
+      error_nickname.innerText = "";
+    }
+
+    if (career_input.value.length < 15) {
       error_career.innerText = "15자 이상으로 입력하시오.";
-    } else if (nickname_input.value < 2) {
-      error_career.innerText = "2자 이상으로 입력하시오.";
+    } else {
+      error_career.innerText = "";
     }
 
-    //조건에 맞게 입력하지 않았을 경우
-    if (id_input.value === "") {
-      error_id.innerText = "아이디를 입력을 하지 않았습니다.";
-      console.log("id 공백");
-    }
-    if (age_input.value === "") {
-      error_age.innerText = "나이를 입력을 하지 않았습니다.";
-      console.log("age 공백");
-    }
-
-    if (career_input.value === "") {
-      error_career.innerText = "경력를 입력을 하지 않았습니다.";
-      console.log("career 공백");
-    }
-    if (nickname_input.value === "") {
-      console.log("nick 공백");
-      error_nickname.innerText = "별명을 입력을 하지 않았습니다.";
-    }
-    if (name_input.value === "") {
-      error_name.innerText = "이름을 입력을 하지 않았습니다.";
-      console.log("name 공백");
+    if (parseInt(age_input.value) > 150) {
+      error_age.innerText = "150살 이하로 작성하시오.";
+    } else {
+      error_age.innerText = "";
     }
 
     //로컬 스토리지에 저장된 값 삭제
-    window.localStorage.removeItem(data_map);
-
-    //input 요소 삭제
-    id_input.value = "";
-    name_input.value = "";
-    age_input.value = "";
-    career_input.value = "";
-    nickname_input.value = "";
+    data_map.pop();
+    //(data_map);
   } else {
+    id_arr.push(infoData._id);
+    nickname_arr.push(infoData.nickname);
+
+    error_id.innerText = "";
+    error_age.innerText = "";
+    error_name.innerText = "";
+    error_career.innerText = "";
+    error_nickname.innerText = "";
+
     //row 생성
     const tr = document.createElement("tr");
 
@@ -142,16 +241,29 @@ save_btn.addEventListener("click", () => {
     const td_age = document.createElement("td");
     const td_career = document.createElement("td");
     const td_nickname = document.createElement("td");
+    const td_management = document.createElement("td");
 
+    //버튼 생성
+    const modify_btn = document.createElement("button");
+    const delete_btn = document.createElement("button");
+
+    //row 내용 삽입
     td_name.innerText = infoData.name;
     td_age.innerText = infoData.age;
     td_career.innerText = infoData.career;
     td_nickname.innerText = infoData.nickname;
 
+    modify_btn.innerText = "수정";
+
+    //style 삽입
+
+    td_management.appendChild(modify_btn);
+    //row 값 삽입
     tr.appendChild(td_name);
     tr.appendChild(td_age);
     tr.appendChild(td_career);
     tr.appendChild(td_nickname);
+    tr.appendChild(td_management);
 
     table.appendChild(tr);
 
@@ -167,15 +279,14 @@ save_btn.addEventListener("click", () => {
     window.localStorage.setItem("_data", JSON.stringify(data_map));
   }
 });
-
 //table
 const main = document.querySelector(".main-wrap");
 const table = document.createElement("table");
 
-const header_list = ["이름", "나이", "커리어", "별명"];
+const header_list = ["이름", "나이", "커리어", "별명", "관리"];
 
 const tr = document.createElement("tr");
-for (let i = 0; i < 4; i++) {
+for (let i = 0; i < 5; i++) {
   const td = document.createElement("td");
   td.innerText = header_list[i];
   tr.appendChild(td);
