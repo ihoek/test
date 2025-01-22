@@ -40,10 +40,12 @@ window.onload = function () {
     for (let j in JSON.parse(ls)) {
       data_map.push(JSON.parse(ls)[j]);
       id_arr.push(data_map[j]._id);
-
+      //관리 버튼
+      const modify_btn = document.createElement("button");
+      const delete_btn = document.createElement("button");
       //row 생성
       const tr = document.createElement("tr");
-      for (let i = 0; i < 4; i++) {
+      for (let i = 0; i < 5; i++) {
         const td = document.createElement("td");
         if (i === 0) {
           td.innerText = data_map[j].name;
@@ -54,6 +56,15 @@ window.onload = function () {
         } else if (i === 3) {
           td.innerText = data_map[j].nickname;
           nickname_arr.push(data_map[j].nickname);
+        } else if (i === 4) {
+          // td.innerText = data_map[j].nickname;
+          // nickname_arr.push(data_map[j].nickname);
+          //버튼 글자 삽입
+          modify_btn.innerText = "수정";
+          delete_btn.innerText = "삭제";
+
+          td.appendChild(modify_btn);
+          td.appendChild(delete_btn);
         }
 
         tr.appendChild(td);
@@ -82,19 +93,18 @@ function printId() {
   } else {
     save_btn.disabled = true; // 비활성화
   }
-  console.log("btn_active[0]", btn_active[0]);
-  //check_arr[0] = error_check;
+  //console.log("btn_active[0]", btn_active[0]);
 }
 function printAge() {
   const content = document.getElementById("age_input").value;
   if (parseInt(age_input.value) > 150) {
     document.getElementById("error_age").innerText = "150살 이하로 작성하시오.";
     btn_active[1] = false;
-    console.log("버튼 비활성화 실행 중");
+    //console.log("버튼 비활성화 실행 중");
   } else {
     document.getElementById("error_age").innerText = content;
     btn_active[1] = true;
-    console.log("버튼 활성화 실행 중");
+    //console.log("버튼 활성화 실행 중");
   }
 
   if (btn_active.indexOf(false) === -1) {
@@ -102,8 +112,7 @@ function printAge() {
   } else {
     save_btn.disabled = true; // 비활성화
   }
-  console.log("btn_active[1]", btn_active[1]);
-  //check_arr[1] = error_check;
+  //console.log("btn_active[1]", btn_active[1]);
 }
 function printCareer() {
   const content = document.getElementById("career_input").value;
@@ -121,8 +130,7 @@ function printCareer() {
   } else {
     save_btn.disabled = true; // 비활성화
   }
-  console.log("btn_active[2]", btn_active[2]);
-  //check_arr[2] = error_check;
+  //console.log("btn_active[2]", btn_active[2]);
 }
 function printNickName() {
   const content = document.getElementById("nickname_input").value;
@@ -140,28 +148,20 @@ function printNickName() {
   }
 
   if (btn_active.indexOf(false) === -1) {
-    //fa 찾지 못했다 즉 다 false
-    console.log("이제 활성화가 된다");
+    //false 찾지 못한 경우 즉, 모두 True인 경우
     save_btn.disabled = false; // 활성화
   } else {
     save_btn.disabled = true; // 비활성화
   }
-  console.log("btn_active[3]", btn_active[3]);
-  //console.log(error_check);
-  //check_arr[3] = error_check;
+  //console.log("btn_active[3]", btn_active[3]);
 }
-
-/*
-평소에는 버튼이 비활성화되어 있다가 모든 조건을 만족하면 활성화로 전환하는 방법
-1.저장버튼 비활성화하기
-2.check_arr의 모든 값이 false일 때만 활성화 시키기
-*/
 
 //버튼 클릭 시 이벤트
 save_btn.addEventListener("click", () => {
   console.log("버튼 실행중");
   save_btn.disabled = true; // 비활성화
   btn_active = [false, false, false, false];
+
   //local Storage get
   window.localStorage.getItem("_data", JSON.stringify(data_map));
 
@@ -178,15 +178,14 @@ save_btn.addEventListener("click", () => {
     career: career_input.value,
     nickname: nickname_input.value,
   };
+
   data_map.push(infoData);
-  //console.log(id_input.value); //현재 input에 입력한 값
-  //console.log(JSON.parse(data_map));
 
   //중복 값 확인
   let ck_id = id_input.value;
   let ck_nick = nickname_input.value;
-
-  //console.log("id_arr", id_arr);
+  console.log("if문 들어오기전 data", data_map);
+  console.log("if문 들어오기전 data_map[0]", data_map[0]);
   if (
     id_arr.slice(0, id_arr.length).includes(ck_id) === true ||
     nickname_arr.slice(0, nickname_arr.length).includes(ck_nick) === true ||
@@ -195,7 +194,6 @@ save_btn.addEventListener("click", () => {
     parseInt(age_input.value) > 150
   ) {
     //이미 입력된 값이라면
-    //console.log("id_arr", id_arr);
     if (id_arr.slice(0, id_arr.length).includes(ck_id) === true) {
       error_id.innerText = "아이디를 중복 입력하셨습니다.";
     } else {
@@ -223,8 +221,8 @@ save_btn.addEventListener("click", () => {
 
     //로컬 스토리지에 저장된 값 삭제
     data_map.pop();
-    //(data_map);
   } else {
+    console.log(data_map);
     id_arr.push(infoData._id);
     nickname_arr.push(infoData.nickname);
 
@@ -243,9 +241,13 @@ save_btn.addEventListener("click", () => {
     const td_nickname = document.createElement("td");
     const td_management = document.createElement("td");
 
-    //버튼 생성
+    //관리 버튼
     const modify_btn = document.createElement("button");
     const delete_btn = document.createElement("button");
+
+    // 버튼 id 값 삽입
+    modify_btn.id = "modify";
+    delete_btn.id = `delete${cnt}`;
 
     //row 내용 삽입
     td_name.innerText = infoData.name;
@@ -253,11 +255,53 @@ save_btn.addEventListener("click", () => {
     td_career.innerText = infoData.career;
     td_nickname.innerText = infoData.nickname;
 
+    //버튼 글자 삽입
     modify_btn.innerText = "수정";
-
-    //style 삽입
-
+    delete_btn.innerText = "삭제";
     td_management.appendChild(modify_btn);
+    td_management.appendChild(delete_btn);
+
+    //class 삽입
+    let modify_cnt = 0;
+    let sub_input = document.createElement("input");
+    let innerinput = infoData.career;
+    let modify_inner = sub_input.vaule;
+    modify_btn.addEventListener("click", () => {
+      if (modify_cnt === 0) {
+        console.log("modify_btn click");
+
+        modify_btn.innerText = "수정완료";
+        td_career.innerText = "";
+        //innertext를 하기 위해서는 현재 위치 값을 알아야함
+        sub_input.setAttribute("value", innerinput);
+        modify_inner = sub_input.vaule;
+        modify_cnt = 1;
+        td_career.appendChild(sub_input);
+      } else {
+        modify_btn.innerText = "수정";
+        modify_inner = sub_input.value;
+        td_career.innerText = modify_inner;
+        console.log("modify_inner", modify_inner);
+        modify_cnt = 0;
+      }
+    });
+
+    delete_btn.addEventListener("click", () => {
+      //console.log("delete_btn click");
+      console.log("delete_btn.id ", delete_btn.id);
+      //console.log("type ", typeof delete_btn.id); // string
+      console.log("data_map", data_map[Number(delete_btn.id)]);
+      window.localStorage.removeItem("_data");
+      // data_map.splice(delete_btn.id, 1);
+      // console.log("data_map", data_map);
+      //deleterow();
+      /*
+      해당 행 삭제
+      1.현재 행의 위치 파악하기 - id로 파악하기
+      2.행의 값을 삭제 이후 값이 바로 위로 올라오게 하기 - 지워진 로컬 스토리지로 테이블 재생성
+      */
+    });
+
     //row 값 삽입
     tr.appendChild(td_name);
     tr.appendChild(td_age);
@@ -279,6 +323,7 @@ save_btn.addEventListener("click", () => {
     window.localStorage.setItem("_data", JSON.stringify(data_map));
   }
 });
+
 //table
 const main = document.querySelector(".main-wrap");
 const table = document.createElement("table");

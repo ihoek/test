@@ -50,7 +50,7 @@ input:focus {
 }
 
 /* 버튼 스타일 */
-button {
+#save {
   width: 100%;
   padding: 12px;
   margin-top: 50px;
@@ -64,11 +64,11 @@ button {
   transition: background-color 0.3s, transform 0.2s;
 }
 
-button:active {
+#save:active {
   background-color: #a4d2e6; /* 눌렀을 때 어두운 하늘색 */
   transform: scale(0.98); /* 약간 눌린 효과 */
 }
-button:disabled {
+#save:disabled {
   background-color: #b0b0b0f7;
 }
 
@@ -99,4 +99,13 @@ table th {
   background-color: var(--main-color);
   color: white;
   font-weight: bold;
+}
+#modify {
+  width: 50px;
+  height: 30px;
+  margin-right: 10px;
+}
+#delete {
+  width: 50px;
+  height: 30px;
 }
