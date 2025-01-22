@@ -1,9 +1,10 @@
 //변수 선언
 let data_map = [];
-let cnt = 0;
 
 let error_check = false; //false 정상적인 값 true 오류난 값(이때 버튼 비활성화할 것)
 let btn_active = [false, false, false, false];
+let modify_cnt = 0; //수정 버튼 클릭 여부
+let position_ck = 0;
 
 const id_input = document.getElementById("id_input");
 const name_input = document.getElementById("name_input");
@@ -40,36 +41,97 @@ window.onload = function () {
     for (let j in JSON.parse(ls)) {
       data_map.push(JSON.parse(ls)[j]);
       id_arr.push(data_map[j]._id);
+      position_ck++;
       //관리 버튼
       const modify_btn = document.createElement("button");
       const delete_btn = document.createElement("button");
       //row 생성
       const tr = document.createElement("tr");
-      for (let i = 0; i < 5; i++) {
-        const td = document.createElement("td");
-        if (i === 0) {
-          td.innerText = data_map[j].name;
-        } else if (i === 1) {
-          td.innerText = data_map[j].age;
-        } else if (i === 2) {
-          td.innerText = data_map[j].career;
-        } else if (i === 3) {
-          td.innerText = data_map[j].nickname;
-          nickname_arr.push(data_map[j].nickname);
-        } else if (i === 4) {
-          // td.innerText = data_map[j].nickname;
-          // nickname_arr.push(data_map[j].nickname);
-          //버튼 글자 삽입
+
+      const td_name = document.createElement("td");
+      const td_age = document.createElement("td");
+      const td_career = document.createElement("td");
+      const td_nickname = document.createElement("td");
+      const td_management = document.createElement("td");
+
+      td_name.innerText = data_map[j].name;
+      td_age.innerText = data_map[j].age;
+      td_career.innerText = data_map[j].career;
+      td_nickname.innerText = data_map[j].nickname;
+      nickname_arr.push(data_map[j].nickname);
+
+      modify_btn.innerText = "수정";
+      delete_btn.innerText = "삭제";
+
+      td_management.appendChild(modify_btn);
+      td_management.appendChild(delete_btn);
+
+      tr.appendChild(td_name);
+      tr.appendChild(td_age);
+      tr.appendChild(td_career);
+      tr.appendChild(td_nickname);
+      tr.appendChild(td_management);
+
+      let sub_input = document.createElement("input");
+      let innerinput = data_map[j].career;
+      let modify_inner = sub_input.vaule;
+
+      modify_btn.addEventListener("click", () => {
+        if (modify_cnt === 0) {
+          modify_btn.innerText = "수정완료";
+          td_career.innerText = "";
+          sub_input.setAttribute("value", innerinput);
+          modify_inner = sub_input.vaule;
+          td_career.appendChild(sub_input);
+
+          modify_cnt = 1;
+        } else {
           modify_btn.innerText = "수정";
-          delete_btn.innerText = "삭제";
-
-          td.appendChild(modify_btn);
-          td.appendChild(delete_btn);
+          modify_inner = sub_input.value;
+          td_career.innerText = modify_inner;
+          console.log("modify_inner", modify_inner);
+          //JSON.stringify(list_data)[position_ck - 1].career = modify_inner;
+          data_map[position_ck - 1].career = modify_inner;
+          console.log(data_map);
+          window.localStorage.setItem("_data", JSON.stringify(data_map));
+          modify_cnt = 0;
         }
+      });
 
-        tr.appendChild(td);
-        table.appendChild(tr);
-      }
+      delete_btn.addEventListener("click", () => {
+        console.log("delete_btn click");
+
+        console.log(
+          "data_map[position_ck - 1]",
+          typeof data_map[position_ck - 1].name
+        );
+        //JSON.parse(data_map).splice(position_ck, 1);
+        //console.log("data_map.splice(position_ck, 1)");
+        //JSON.stringify("_data", data_map);
+
+        data_map = data_map.filter(
+          (e) => e.name !== data_map[position_ck - 1].name
+        );
+        console.log(data_map);
+        window.localStorage.setItem("_data", JSON.stringify(data_map));
+        table.removeChild(tr);
+        position_ck--;
+        return;
+        console.log("set 전 data_map", data_map);
+        window.localStorage.setItem("_data", JSON.stringify(data_map));
+        console.log("data_map", data_map);
+
+        //테이블에서의 삭제
+
+        //스토리지에서도 삭제할것
+
+        /*
+        해당 행 삭제
+        1.현재 행의 위치 파악하기 - id로 파악하기
+        2.행의 값을 삭제 이후 값이 바로 위로 올라오게 하기 - 지워진 로컬 스토리지로 테이블 재생성?
+        */
+      });
+      table.appendChild(tr);
       console.log("로드 시 값 (data_map): ", data_map);
     }
   }
@@ -83,7 +145,7 @@ function printId() {
       "동일한 id값을 입력하셨습니다";
     btn_active[0] = false;
   } else {
-    document.getElementById("error_id").innerText = content;
+    document.getElementById("error_id").innerText = "";
     btn_active[0] = true;
   }
 
@@ -96,13 +158,12 @@ function printId() {
   //console.log("btn_active[0]", btn_active[0]);
 }
 function printAge() {
-  const content = document.getElementById("age_input").value;
   if (parseInt(age_input.value) > 150) {
     document.getElementById("error_age").innerText = "150살 이하로 작성하시오.";
     btn_active[1] = false;
     //console.log("버튼 비활성화 실행 중");
   } else {
-    document.getElementById("error_age").innerText = content;
+    document.getElementById("error_age").innerText = "";
     btn_active[1] = true;
     //console.log("버튼 활성화 실행 중");
   }
@@ -115,13 +176,12 @@ function printAge() {
   //console.log("btn_active[1]", btn_active[1]);
 }
 function printCareer() {
-  const content = document.getElementById("career_input").value;
   if (career_input.value.length < 15) {
     document.getElementById("error_career").innerText =
       "15자 이상으로 작성하시오.";
     btn_active[2] = false;
   } else {
-    document.getElementById("error_career").innerText = content;
+    document.getElementById("error_career").innerText = "";
     btn_active[2] = true;
   }
 
@@ -143,7 +203,7 @@ function printNickName() {
       "2자 이상으로 입력하시오.";
     btn_active[3] = false;
   } else {
-    document.getElementById("error_nickname").innerText = content;
+    document.getElementById("error_nickname").innerText = "";
     btn_active[3] = true;
   }
 
@@ -177,6 +237,7 @@ save_btn.addEventListener("click", () => {
     age: age_input.value,
     career: career_input.value,
     nickname: nickname_input.value,
+    po_ck: position_ck,
   };
 
   data_map.push(infoData);
@@ -184,8 +245,8 @@ save_btn.addEventListener("click", () => {
   //중복 값 확인
   let ck_id = id_input.value;
   let ck_nick = nickname_input.value;
-  console.log("if문 들어오기전 data", data_map);
-  console.log("if문 들어오기전 data_map[0]", data_map[0]);
+  //console.log("if문 들어오기전 data", data_map);
+  //console.log("if문 들어오기전 data_map[0]", data_map[0]);
   if (
     id_arr.slice(0, id_arr.length).includes(ck_id) === true ||
     nickname_arr.slice(0, nickname_arr.length).includes(ck_nick) === true ||
@@ -222,9 +283,10 @@ save_btn.addEventListener("click", () => {
     //로컬 스토리지에 저장된 값 삭제
     data_map.pop();
   } else {
-    console.log(data_map);
+    //console.log(data_map);
     id_arr.push(infoData._id);
     nickname_arr.push(infoData.nickname);
+    position_ck++;
 
     error_id.innerText = "";
     error_age.innerText = "";
@@ -246,8 +308,8 @@ save_btn.addEventListener("click", () => {
     const delete_btn = document.createElement("button");
 
     // 버튼 id 값 삽입
-    modify_btn.id = "modify";
-    delete_btn.id = `delete${cnt}`;
+    modify_btn.id = `modify${position_ck}`;
+    delete_btn.id = `delete${position_ck}`;
 
     //row 내용 삽입
     td_name.innerText = infoData.name;
@@ -260,47 +322,6 @@ save_btn.addEventListener("click", () => {
     delete_btn.innerText = "삭제";
     td_management.appendChild(modify_btn);
     td_management.appendChild(delete_btn);
-
-    //class 삽입
-    let modify_cnt = 0;
-    let sub_input = document.createElement("input");
-    let innerinput = infoData.career;
-    let modify_inner = sub_input.vaule;
-    modify_btn.addEventListener("click", () => {
-      if (modify_cnt === 0) {
-        console.log("modify_btn click");
-
-        modify_btn.innerText = "수정완료";
-        td_career.innerText = "";
-        //innertext를 하기 위해서는 현재 위치 값을 알아야함
-        sub_input.setAttribute("value", innerinput);
-        modify_inner = sub_input.vaule;
-        modify_cnt = 1;
-        td_career.appendChild(sub_input);
-      } else {
-        modify_btn.innerText = "수정";
-        modify_inner = sub_input.value;
-        td_career.innerText = modify_inner;
-        console.log("modify_inner", modify_inner);
-        modify_cnt = 0;
-      }
-    });
-
-    delete_btn.addEventListener("click", () => {
-      //console.log("delete_btn click");
-      console.log("delete_btn.id ", delete_btn.id);
-      //console.log("type ", typeof delete_btn.id); // string
-      console.log("data_map", data_map[Number(delete_btn.id)]);
-      window.localStorage.removeItem("_data");
-      // data_map.splice(delete_btn.id, 1);
-      // console.log("data_map", data_map);
-      //deleterow();
-      /*
-      해당 행 삭제
-      1.현재 행의 위치 파악하기 - id로 파악하기
-      2.행의 값을 삭제 이후 값이 바로 위로 올라오게 하기 - 지워진 로컬 스토리지로 테이블 재생성
-      */
-    });
 
     //row 값 삽입
     tr.appendChild(td_name);
@@ -317,10 +338,63 @@ save_btn.addEventListener("click", () => {
     career_input.value = "";
     nickname_input.value = "";
 
-    cnt++;
-
     //local Storage set
     window.localStorage.setItem("_data", JSON.stringify(data_map));
+
+    //class 삽입
+    let sub_input = document.createElement("input");
+    let innerinput = infoData.career;
+    let modify_inner = sub_input.vaule;
+
+    modify_btn.addEventListener("click", () => {
+      console.log(`modify${infoData.po_ck}번째 버튼 실행중`);
+      if (modify_cnt === 0) {
+        console.log("modify_btn click");
+
+        modify_btn.innerText = "수정완료";
+        td_career.innerText = "";
+        sub_input.setAttribute("value", innerinput);
+        modify_inner = sub_input.vaule;
+        td_career.appendChild(sub_input);
+
+        modify_cnt = 1;
+      } else {
+        modify_btn.innerText = "수정";
+        modify_inner = sub_input.value;
+        td_career.innerText = modify_inner;
+        console.log("modify_inner", modify_inner);
+        console.log("position_ck", position_ck);
+        //JSON.stringify(list_data)[position_ck - 1].career = modify_inner;
+        //data_map[infoData.po_ck - 1].career = modify_inner;
+
+        data_map[position_ck - 1].career = modify_inner;
+        console.log(
+          "data_map[position_ck].career",
+          data_map[position_ck - 1].career
+        );
+        console.log(data_map);
+        window.localStorage.setItem("_data", JSON.stringify(data_map));
+        modify_cnt = 0;
+      }
+    });
+
+    delete_btn.addEventListener("click", () => {
+      console.log("delete_btn click");
+
+      console.log("infoData._id", infoData._id);
+      //JSON.parse(data_map).splice(position_ck, 1);
+      //console.log("data_map.splice(position_ck, 1)");
+      //JSON.stringify("_data", data_map);
+
+      data_map = data_map.filter((e) => e._id !== infoData._id);
+      id_arr = id_arr.filter((e) => e !== infoData._id);
+      nickname_arr = nickname_arr.filter((e) => e !== infoData.nickname);
+      //console.log("id_arr", id_arr);
+      //console.log(data_map);
+      window.localStorage.setItem("_data", JSON.stringify(data_map));
+      table.removeChild(tr);
+      position_ck--;
+    });
   }
 });
 
