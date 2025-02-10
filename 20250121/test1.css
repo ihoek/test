@@ -1,11 +1,25 @@
-/* 포인트 컬러 */
+/* 색상 정의 */
 :root {
   --main-color: #badfee; /* 하늘색 */
-  --error-color: #ff6b6b; /* 오류 메시지용 빨간색 */
+  --error-color: #ff6b6b; /* 오류 메시지 빨간색 */
   --input-bg: #f5faff; /* 입력 박스 배경색 */
+  --disabled-color: #b0b0b0f7; /* 비활성화 버튼 색상 */
+  --table-header-bg: #f4f4f4; /* 테이블 헤더 배경색 */
+  --table-border: #ddd; /* 테이블 테두리 */
 }
 
-/* input 영역 스타일 */
+/* 전체 레이아웃 */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 입력 영역 스타일 */
 .input-wrap {
   display: flex;
   flex-direction: column;
@@ -14,8 +28,8 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  width: 100%; /* 반응형을 위해 % 사용 */
-  max-width: 600px; /* 최대 너비 */
+  width: 100%;
+  max-width: 600px;
   margin: 20px auto;
   border: 1px solid var(--main-color);
 }
@@ -24,7 +38,7 @@ input {
   width: 100%;
   padding: 12px;
   margin: 10px 0;
-  border: 1px solid #ddd;
+  border: 1px solid var(--table-border);
   border-radius: 6px;
   box-sizing: border-box;
   font-size: 14px;
@@ -47,13 +61,15 @@ input:focus {
   color: var(--error-color);
   margin-top: -5px;
   margin-bottom: 10px;
+  text-align: left;
+  width: 100%;
 }
 
 /* 버튼 스타일 */
 #save {
   width: 100%;
   padding: 12px;
-  margin-top: 50px;
+  margin-top: 20px;
   border: none;
   border-radius: 6px;
   background-color: var(--main-color);
@@ -65,47 +81,75 @@ input:focus {
 }
 
 #save:active {
-  background-color: #a4d2e6; /* 눌렀을 때 어두운 하늘색 */
-  transform: scale(0.98); /* 약간 눌린 효과 */
-}
-#save:disabled {
-  background-color: #b0b0b0f7;
+  background-color: #a4d2e6;
+  transform: scale(0.98);
 }
 
-/* 메인 테이블 스타일 */
+#save:disabled {
+  background-color: var(--disabled-color);
+  cursor: not-allowed;
+}
+
+/* 테이블 래퍼 */
 .main-wrap {
   width: 100%;
-  max-width: 650px; /* input-wrap과 동일한 최대 너비 */
+  max-width: 650px;
   margin: 20px auto;
-}
-
-table {
-  width: 100%; /* input-wrap과 동일한 가로 크기 */
-  border-collapse: collapse;
-  text-align: left;
   background-color: white;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   border: 1px solid var(--main-color);
 }
 
-table th,
-table td {
-  padding: 12px;
-  border: 1px solid #ddd;
-  font-size: 14px;
+/* 테이블 스타일 */
+.table {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-table th {
-  background-color: var(--main-color);
-  color: white;
+.table .row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  background-color: var(--table-header-bg);
   font-weight: bold;
+  border-bottom: 2px solid var(--table-border);
+  padding: 10px;
 }
-#modify {
-  width: 50px;
-  height: 30px;
-  margin-right: 10px;
+
+.table .tBody {
+  display: flex;
+  flex-direction: column;
 }
-#delete {
-  width: 50px;
-  height: 30px;
+
+.table .tBody div {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 10px;
+  border-bottom: 1px solid var(--table-border);
+  align-items: center;
+}
+
+/* 버튼 내부 스타일 */
+.btnCor,
+.btnDel {
+  padding: 6px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  margin: 0 4px;
+}
+
+.btnCor,
+.btnDel {
+  background-color: gray; /* 수정 버튼: 녹색 */
+}
+
+.btnCor:disabled,
+.btnDel:disabled {
+  background-color: var(--disabled-color);
+  cursor: not-allowed;
 }
